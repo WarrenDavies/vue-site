@@ -10,8 +10,8 @@
     <ul>
       <li v-for="(name, index) in names"><b>Name {{index + 1}}:</b> {{name}}</li>
     </ul>
-    <input id="input" type="text"></input>
-    <button id="button">Add Name</button>
+    <input id="input" type="text" v-model="newName"></input>
+    <button @click="addName">Add Name</button>
   </div>
   <script>
     
@@ -20,17 +20,20 @@
       el: '#root',
       
       data: {
+        newName: '',
         message: 'Hello World',
         names: ['Thor', 'Tony', 'Steve', 'Bruce', 'Clint', 'Natasha'],
       },
       
+      methods: {
+        addName() {
+          this.names.push(this.newName);
+          this.newName = "";
+        }
+      },
+
       mounted() {
-        let button = document.getElementById("button");
-        button.addEventListener('click', () => {
-          let name = document.getElementById("input");
-          console.log(name.value);
-          app.names.push(name.value);
-        });
+       
       }
 
     })
