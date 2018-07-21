@@ -5,6 +5,22 @@
   <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
- 
+  
+  <div id="root">
+    <input type="text" id="input" v-model="message">
+    <p>the value of the input is: {{ message }}</p>
+  </div>
+
+  <script>
+    
+
+    new Vue({
+      el: '#root',
+      data: {
+        message: 'Hello World'
+      }
+    })
+
+  </script>
 </body>
 </html>
