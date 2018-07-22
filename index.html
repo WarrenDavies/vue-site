@@ -12,14 +12,23 @@
 <body>
   
   <div id="root">
-    <h1 :class="className">Roster</h1>
-    <input type="checkbox" v-model="readyToAdd" name="ready-to-add" value="readyToAdd"> Ready to add names<br>
-    <input id="input" type="text" v-model="newName" @keyup.enter="checkReady"></input>
-    <button :class="{ 'color-red': beenClicked}" :title="title" @click="addName" :disabled="!readyToAdd">Add Name</button>
-    <ul>
-      <li v-for="(name, index) in names"><b>Name {{index + 1}}:</b> {{name}}</li>
-    </ul>
+    <h1 :class="className">To Do List</h1>
+    <input id="input" type="text" v-model="newTask" @keyup.enter="addTask"></input>
+
+    <button :title="title" @click="addTask" :disabled="!readyToAdd">Add Task</button>
     
+    <h3>To Do</h3>
+    <ul>
+      <li v-for="(task, index) in tasksToDo">{{task.description}} <input type="checkbox" v-model="task.completed"></input></li>
+    </ul>
+
+    <h3>Done</h3>
+    <ul>
+      <li v-for="(task, index) in tasksDone">{{task.description}} <input type="checkbox" v-model="task.completed"></input></li>
+    </ul>
+    <p>
+      {{reverseMessage}}
+    </p>
   </div>
   <script>
     
@@ -28,32 +37,35 @@
       el: '#root',
       
       data: {
-        beenClicked: false,
-        title: "This title is set through JavaScript",
-        newName: '',
-        readyToAdd: false,
-        message: 'Hello World',
-        names: ['Thor', 'Tony', 'Steve', 'Bruce', 'Clint', 'Natasha'],
-        className: "color-red"
+        tasks: [
+          {description: "Finish tutorials" , completed: false },
+          {description: "Meditate" , completed: false },
+          {description: "Read" , completed: false },
+          {description: "Shower" , completed: false },
+          {description: "Drink a coffee" , completed: false },
+          {description: "Get things ready for work" , completed: false },
+        ],
+        newTask: "",
       },
       
       methods: {
-        addName() {
-          this.names.push(this.newName);
-          this.newName = "";
-          this.beenClicked = true;
-        },
-        checkReady() {
-          if (this.readyToAdd) {
-            this.addName();
-          }
-        },
+        addTask() {
+          this.tasks.push();
+        }
+      },
+      
+      computed: {
+       tasksToDo: function() {
+         return this.tasks.filter(comp => !comp.completed);
+       },
+       tasksDone: function() {
+         return this.tasks.filter(comp => comp.completed);
+       }
       },
 
-
       mounted() {
-        console.log(readyToAdd);
-      }
+      
+      },
 
     })
 
