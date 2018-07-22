@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My first Vue app</title>
+  <title>To Do</title>
   <script src="https://unpkg.com/vue"></script>
   <style>
     .color-red {
       color: red;
+    }
+    li li {
+      margin-left: 20px;
     }
   </style>
 </head>
@@ -19,12 +22,21 @@
     
     <h3>To Do</h3>
     <ul>
-      <li v-for="(task, index) in tasksToDo">{{task.description}} <input type="checkbox" v-model="task.completed"></input></li>
+      <li v-for="(task, index) in tasksToDo">
+        {{task.description}} 
+        <input type="checkbox" v-model="task.completed"></input>
+        <task>This is a task you have yet to do!</task>
+      </li>
+      
     </ul>
 
     <h3>Done</h3>
     <ul>
-      <li v-for="(task, index) in tasksDone">{{task.description}} <input type="checkbox" v-model="task.completed"></input></li>
+      <li v-for="(task, index) in tasksDone">
+        {{task.description}}
+        <input type="checkbox" v-model="task.completed"></input>
+        <task>Getting there my friend, getting things done!</task>
+      </li>
     </ul>
   </div>
   <script src="main.js"></script> 
