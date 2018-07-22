@@ -12,10 +12,10 @@
 <body>
   
   <div id="root">
-    <h1 :class="className">To Do List</h1>
+    <h1>To Do List</h1>
     <input id="input" type="text" v-model="newTask" @keyup.enter="addTask"></input>
 
-    <button :title="title" @click="addTask" :disabled="!readyToAdd">Add Task</button>
+    <button @click="addTask">Add Task</button>
     
     <h3>To Do</h3>
     <ul>
@@ -26,49 +26,11 @@
     <ul>
       <li v-for="(task, index) in tasksDone">{{task.description}} <input type="checkbox" v-model="task.completed"></input></li>
     </ul>
-    <p>
-      {{reverseMessage}}
-    </p>
   </div>
-  <script>
-    
+  <script src="main.js"></script> 
 
-    var app = new Vue({
-      el: '#root',
-      
-      data: {
-        tasks: [
-          {description: "Finish tutorials" , completed: false },
-          {description: "Meditate" , completed: false },
-          {description: "Read" , completed: false },
-          {description: "Shower" , completed: false },
-          {description: "Drink a coffee" , completed: false },
-          {description: "Get things ready for work" , completed: false },
-        ],
-        newTask: "",
-      },
-      
-      methods: {
-        addTask() {
-          this.tasks.push();
-        }
-      },
-      
-      computed: {
-       tasksToDo: function() {
-         return this.tasks.filter(comp => !comp.completed);
-       },
-       tasksDone: function() {
-         return this.tasks.filter(comp => comp.completed);
-       }
-      },
+   
 
-      mounted() {
-      
-      },
 
-    })
-
-  </script>
 </body>
 </html>
