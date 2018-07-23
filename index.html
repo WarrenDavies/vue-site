@@ -4,45 +4,65 @@
   <title>To Do</title>
   <script src="https://unpkg.com/vue"></script>
   <style>
+    body {
+      padding: 20px;
+
+    }
     .color-red {
       color: red;
     }
-    li li {
-      margin-left: 20px;
+
+    .container ul {
+      display: block;
+      width:100%;
+      list-style-type: none;
+      padding: 10px 10px 10px 0px;
     }
+
+
+    .container ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    
+    .container ul li a, .container ul li a:visited {
+      text-decoration: none;
+      color: black;
+    }
+    
+    .container ul li.is-active a, .container ul li.is-active a:visited {
+      text-decoration: underline;
+      color: red;
+    }
+
   </style>
 </head>
 <body>
   
-  <div id="root">
-    <h1>To Do List</h1>
-    <input id="input" type="text" v-model="newTask" @keyup.enter="addTask"></input>
-
-    <button @click="addTask">Add Task</button>
+  <div id="root" class="container">
     
-    <h3>To Do</h3>
-    <ul>
-      <li v-for="(task, index) in tasksToDo">
-        {{task.description}} 
-        <input type="checkbox" v-model="task.completed"></input>
-        <task>This is a task you have yet to do!</task>
-      </li>
-      
-    </ul>
+    <tabs>
+      <tab name="Home" :selected="true">
+        Look at the home page
+      </tab>
+      <tab name="Blog" >
+        Read some stuff
+      </tab>
+      <tab name="About">
+        All about us!
+      </tab>
+      <tab name="Contact" >
+        Get in touch!
+      </tab>
+      <tab name="FnFF  Fc F t F   TtT" >
+        GGDGGDG
+      </tab>
+    </tabs>
 
-    <h3>Done</h3>
-    <ul>
-      <li v-for="(task, index) in tasksDone">
-        {{task.description}}
-        <input type="checkbox" v-model="task.completed"></input>
-        <task>Getting there my friend, getting things done!</task>
-      </li>
-    </ul>
   </div>
+
+
+
   <script src="main.js"></script> 
-
-   
-
-
 </body>
 </html>

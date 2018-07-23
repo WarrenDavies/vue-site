@@ -1,40 +1,74 @@
- var app = new Vue({
-      el: '#root',
-      
-      data: {
-        tasks: [
-          {description: "Finish tutorials" , completed: false },
-          {description: "Meditate" , completed: false },
-          {description: "Read" , completed: false },
-          {description: "Shower" , completed: false },
-          {description: "Drink a coffee" , completed: false },
-          {description: "Get things ready for work" , completed: false },
-        ],
-        newTask: "",
-      },
-      
-      methods: {
-        addTask() {
-          this.tasks.push({description: this.newTask, completed: false});
-          this.newTask="";
-        },
-      },
-      
-      computed: {
-       tasksToDo: function() {
-         return this.tasks.filter(comp => !comp.completed);
-       },
-       tasksDone: function() {
-         return this.tasks.filter(comp => comp.completed);
-       }
-      },
+Vue.component('tabs', {
+  
+  template: `
+    <div>
+      <div class="tabs">
+        <ul>
+         <li v-for='tab in tabs' :class="{'is-active' : tab.isActive}">
+            <a :href='tab.href' @click='selectTab(tab)'>
+              {{tab.name}}
+            </a>          
+          </li>
+        </ul>
+      </div>
+      <div class="tabs-details">
+        <slot></slot>
+      </div>
+    </div>
+  `,
 
-      mounted() {
-      
-      },
+  mounted() {
+    console.log(this.$children);
+  },
 
-    })
+  data() {
+    return {
+      tabs: []
+    };
+  },
 
-    Vue.component('task', {
-        template: '<li><slot></slot></li>'
-    })
+  created() {
+    this.tabs = this.$children;
+  },
+
+  methods: {
+    selectTab(tab) {
+      this.tabs.forEach(i => {
+        i.isActive = (i.name == tab.name);
+      });
+    },
+  },
+});
+
+Vue.component('tab', {
+  template:  `
+    <div v-show="isActive"><slot></slot></div>
+  `,
+
+  props: {
+    name: {required: true},
+    selected: {default: false}
+  },
+
+  data() {
+    return {
+      isActive: false
+    }
+  },
+
+  computed: {
+    href() {
+      return '#' + this.name.toLowerCase().replace(/ /g, '-');
+    },
+  },
+  mounted() {
+    this.isActive = this.selected;
+  }
+})
+
+new Vue({
+  el:"#root",
+
+
+
+});
