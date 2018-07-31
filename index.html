@@ -1,68 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>To Do</title>
-  <script src="https://unpkg.com/vue"></script>
-  <style>
-    body {
-      padding: 20px;
-
-    }
-    .color-red {
-      color: red;
-    }
-
-    .container ul {
-      display: block;
-      width:100%;
-      list-style-type: none;
-      padding: 10px 10px 10px 0px;
-    }
-
-
-    .container ul li {
-      display: inline-block;
-      margin-right: 20px;
-    }
-    
-    .container ul li a, .container ul li a:visited {
-      text-decoration: none;
-      color: black;
-    }
-    
-    .container ul li.is-active a, .container ul li.is-active a:visited {
-      text-decoration: underline;
-      color: red;
-    }
-
-  </style>
-</head>
-<body>
-  
-  <div id="root" class="container">
-    
-    <tabs>
-      <tab name="Home" :selected="true">
-        Look at the home page
-      </tab>
-      <tab name="Blog" >
-        Read some stuff
-      </tab>
-      <tab name="About">
-        All about us!
-      </tab>
-      <tab name="Contact" >
-        Get in touch!
-      </tab>
-      <tab name="FnFF  Fc F t F   TtT" >
-        GGDGGDG
-      </tab>
-    </tabs>
-
-  </div>
-
-
-
-  <script src="main.js"></script> 
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>vue-site</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+  </body>
 </html>
